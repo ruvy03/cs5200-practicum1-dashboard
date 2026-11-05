@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Restaurant visits dashboard
 
-## Getting Started
+CS5200 Practicum I, Part H (Fall 2026) · Dhruv Sinha
 
-First, run the development server:
+A one-page analytics dashboard for the restaurant visits database. It reads live from the
+Aiven MySQL database, and every number is calculated with SQL when the page loads.
+
+- Key numbers: visits, revenue, tips, loyalty customers, average bill, average wait
+- Revenue by month and totals per year
+- Visits, revenue, food vs alcohol, and loyalty customers for each restaurant
+- Food vs alcohol totals, meal types, and payment methods
+- Filters by restaurant and year
+- If the database can't be reached, the page says so and shows no data
+
+Built with Next.js, React, TypeScript, Tailwind CSS, Recharts, and mysql2.
+
+## How it works
+
+`app/api/stats/route.ts` runs the SQL queries on the server and returns JSON.
+`components/Dashboard.tsx` fetches that JSON and draws the page. The database password
+stays on the server and is never sent to the browser.
+
+## Environment variables
+
+See `.env.example`. Locally, put the values in `.env.local` and place the Aiven
+`ca.pem` in this folder. On Vercel, set the same variables in the project settings and
+paste the contents of `ca.pem` into `DB_SSL_CA_CERT` instead.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## AI use
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Claude (Anthropic) was used to build this dashboard.

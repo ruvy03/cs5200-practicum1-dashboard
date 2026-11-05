@@ -1,26 +1,30 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* "short:" classes apply on shorter screens so the whole dashboard still fits without scrolling */
+@custom-variant short (@media (max-height: 800px));
 
+/* fonts come from next/font in layout.tsx */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* palette: deep pine and leaf greens, cream and mint surfaces, apricot and sky accents */
+@theme {
+  --color-pine: #005450;
+  --color-pine-ink: #004d49;
+  --color-leaf: #068466;
+  --color-sage: #abcc76;
+  --color-apricot: #ffc776;
+  --color-peach: #ffedce;
+  --color-mint: #eef6f4;
+  --color-cream: #f5f3ef;
+  --color-sky: #0578ff;
+  --color-ink: #2a2927;
+  --color-ember: #c2410c;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-pine-ink);
 }
